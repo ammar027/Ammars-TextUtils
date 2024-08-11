@@ -15,6 +15,11 @@ export default function TextForm({ heading = '' }) {
         setText(event.target.value);
     }
 
+    const handleClrClick = () => {
+        let newText = '';
+        setText(newText);
+    }
+
     const countCharacters = (str) => {
         return str.split('').filter(char => char !== ' ').length;
     };
@@ -42,6 +47,9 @@ export default function TextForm({ heading = '' }) {
                 </button>
                 <button className="btn btn-primary mx-2 my-2" onClick={handleLowClick}>
                     Convert to Lowercase
+                </button>
+                <button className="btn btn-primary mx-2 my-2" onClick={handleClrClick}>
+                    Clear text
                 </button>
             </div>
             <div className="container my-4">
