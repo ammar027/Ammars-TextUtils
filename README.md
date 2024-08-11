@@ -32,8 +32,3 @@ A simple React application to transform text to uppercase or lowercase and provi
 2. Click "Convert to Uppercase" or "Convert to Lowercase".
 3. View the text summary and preview.
 
-## Code Overview
-
-### `TextForm` Component
-
-Handles text input and transformations.
