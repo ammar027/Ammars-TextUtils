@@ -1,47 +1,62 @@
 import React, { useState } from 'react';
 import './App.css';
-// import About from './components/About';
 import Navbar from './components/Navbar';
 import TextForm from './components/TextForm';
 import Alert from './components/Alert';
 
-
 function App() {
   const [mode, setMode] = useState('light');
-  const [alert, setAlert] = useState(null)
+  const [theme, setTheme] = useState('light');
+  const [alert, setAlert] = useState(null);
 
-  const showAlert = (message , type)=>{
+  const showAlert = (message, type) => {
     setAlert({
-    msg: message,
-    type: type
-  })
-  setTimeout(() =>{
+      msg: message,
+      type: type
+    });
+    setTimeout(() => {
       setAlert(null);
-  }, 1500)
+    }, 1500);
   }
+
   const toggleMode = () => {
-    if(mode === 'light'){
-      setMode('dark'); 
+    if (mode === 'light') {
+      setMode('dark');
+      setTheme('dark'); // Default to normal dark mode
       document.body.style.backgroundColor = '#141414';
       document.body.style.color = 'white';
-      showAlert("Dark mode has been enabled", "success" );
-    }
-    else{
+      showAlert("Dark mode has been enabled", "success");
+      document.title = 'TextUtils - Darkmode'
+    } else {
       setMode('light');
+      setTheme('light');
       document.body.style.backgroundColor = '#F9F9F9';
       document.body.style.color = 'black';
-      showAlert("Light mode has been enabled", "success" );
+      showAlert("Light mode has been enabled", "success");
+      document.title = 'TextUtils - Lightmode'
     }
+  }
+
+  const handleThemeChange = (newTheme) => {
+    setTheme(newTheme);
+    if (newTheme === 'dark') {
+      document.body.style.backgroundColor = '#141414';
+      document.body.style.color = 'white';
+    } else if (newTheme === 'dark-blue') {
+      document.body.style.backgroundColor = '#001020';
+    } else if (newTheme === 'dark-green') {
+      document.body.style.backgroundColor = '#012301';
+    }
+    showAlert(`${newTheme.charAt(0).toUpperCase() + newTheme.slice(1)} theme has been enabled`, "success");
   }
 
   return (
     <>
-    <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode}/>
-    <Alert alert={alert} />
-    <div className="container my-4  ">
-    <TextForm showAlert={showAlert} heading = "Enter the text to convert" mode={mode}/>
-    {/* <About/> */}
-    </div>
+      <Navbar title="TextUtils" mode={mode} theme={theme} setTheme={handleThemeChange} toggleMode={toggleMode} />
+      <Alert alert={alert} />
+      <div className="container my-4">
+        <TextForm showAlert={showAlert} heading="Enter the text to convert" mode={mode} />
+      </div>
     </>
   );
 }

@@ -1,7 +1,21 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-export default function Navbar({ title = 'Set title here', aboutText = 'About', mode = 'mode', toggleMode = ''}) {
+export default function Navbar({ title = 'Set title here', aboutText = 'About', mode = 'light', theme = 'light', setTheme, toggleMode }) {
+  // Get the text for the dropdown button based on the current theme
+  const getDropdownText = () => {
+    switch (theme) {
+      case 'dark':
+        return 'Dark';
+      case 'dark-blue':
+        return 'Dark Blue';
+      case 'dark-green':
+        return 'Dark Green';
+      default:
+        return 'Theme';
+    }
+  }
+
   return (
     <nav className={`navbar navbar-expand-lg navbar-${mode} bg-${mode}`}>
       <div className="container-fluid">
@@ -17,16 +31,25 @@ export default function Navbar({ title = 'Set title here', aboutText = 'About', 
             <li className="nav-item">
               <a className="nav-link" href="/">{aboutText}</a>
             </li>
-            
           </ul>
-          {/* <form className="d-flex">
-            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-            <button className="btn btn-outline-success" type="submit">Search</button>
-          </form> */}
-            <div className={`form-check form-switch text-${mode === 'light' ? 'dark': 'light'}`}>
-              <input className="form-check-input my-1 " onClick={toggleMode} type="checkbox" role="switch" id="flexSwitchCheckDefault"/>
-              <label className="form-check-label" htmlFor="flexSwitchCheckDefault">DarkMode</label>
+          <div className="d-flex align-items-center">
+            {mode === 'dark' && (
+              <div className="nav-item dropdown me-3">
+                <button className={`btn btn-${mode} dropdown-toggle`} data-bs-toggle="dropdown" aria-expanded="false">
+                  {getDropdownText()}
+                </button>
+                <ul className={`dropdown-menu dropdown-menu-${mode}`}>
+                  <li><button className="dropdown-item" onClick={() => setTheme('dark')}>Dark</button></li>
+                  <li><button className="dropdown-item" onClick={() => setTheme('dark-blue')}>Dark Blue</button></li>
+                  <li><button className="dropdown-item" onClick={() => setTheme('dark-green')}>Dark Green</button></li>
+                </ul>
+              </div>
+            )}
+            <div className={`form-check form-switch text-${mode === 'light' ? 'dark' : 'light'} ms-3`}>
+              <input className="form-check-input" onClick={toggleMode} type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+              <label className="form-check-label" htmlFor="flexSwitchCheckDefault">Dark Mode</label>
             </div>
+          </div>
         </div>
       </div>
     </nav>
@@ -34,8 +57,10 @@ export default function Navbar({ title = 'Set title here', aboutText = 'About', 
 }
 
 Navbar.propTypes = {
-    title: PropTypes.string.isRequired,
-    aboutText: PropTypes.string
+  title: PropTypes.string.isRequired,
+  aboutText: PropTypes.string,
+  mode: PropTypes.string,
+  theme: PropTypes.string,
+  setTheme: PropTypes.func.isRequired,
+  toggleMode: PropTypes.func.isRequired
 }
-
-
