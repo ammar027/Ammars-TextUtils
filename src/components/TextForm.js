@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 
-export default function TextForm({ heading = '' }) {
+export default function TextForm({ heading = '', mode = 'mode' }) {
     const [text, setText] = useState('');
     const textAreaRef = useRef(null);
 
@@ -55,8 +55,9 @@ export default function TextForm({ heading = '' }) {
 
     return (
         <>
-            <div className="container">
-                <h1>{heading}</h1>
+            <div className="container" >
+            
+                <h1 >{heading}</h1>
                 <div className="mb-3">
                     <textarea
                         className="form-control"
@@ -65,14 +66,14 @@ export default function TextForm({ heading = '' }) {
                         id="myBox"
                         rows="10"
                         ref={textAreaRef}
-                        style={{ resize: 'vertical' }}
+                        style={{ backgroundColor: mode === 'light' ? 'white': 'grey' , resize: 'vertical',color: mode === 'dark' ? 'white': 'black'}}
                     ></textarea>
                 </div>
                 <button className="btn btn-primary mx-2 my-2" onClick={handleUpClick}>
                     Convert to Uppercase
                 </button>
                 <button className="btn btn-primary mx-2 my-2" onClick={handleLowClick}>
-                    Convert to Lowercase
+                    Convert to Lowercase 
                 </button>
                 <button className="btn btn-primary mx-2 my-2" onClick={handleClearClick}>
                     Clear Text
@@ -87,12 +88,13 @@ export default function TextForm({ heading = '' }) {
                     Remove Extra Space
                 </button>
             </div>
-            <div className="container my-4">
-                <h2>Your text summary</h2>
+            <div className="container my-4" >
+            {/* style={{ color: mode === 'dark' ? 'white': 'black'}} */}
+                <h2 >Your text summary</h2>
                 <p>{wordCount} words, {charCount} characters</p>
                 <p>{0.008 * wordCount} Minutes read</p>
                 <h2>Preview</h2>
-                <p>{text}</p>
+                <p>{text.length>0?text:"Enter something to preview"}</p>
             </div>
         </>
     );

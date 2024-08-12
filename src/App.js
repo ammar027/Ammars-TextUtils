@@ -1,14 +1,29 @@
+import React, { useState } from 'react';
 import './App.css';
 // import About from './components/About';
 import Navbar from './components/Navbar';
 import TextForm from './components/TextForm';
 function App() {
+  const [mode, setMode] = useState('light');
+
+  const toggleMode = () => {
+    if(mode === 'light'){
+      setMode('dark'); 
+      document.body.style.backgroundColor = '#141414';
+      document.body.style.color = 'white';
+    }
+    else{
+      setMode('light');
+      document.body.style.backgroundColor = 'white';
+      document.body.style.color = 'black';
+    }
+  }
 
   return (
     <>
-    <Navbar title="TextUtils" />
+    <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode}/>
     <div className="container my-4  ">
-    <TextForm heading = "Enter the text to convert"/>
+    <TextForm heading = "Enter the text to convert" mode={mode}/>
 
     {/* <About/> */}
     </div>
