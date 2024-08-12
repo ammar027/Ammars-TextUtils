@@ -28,6 +28,7 @@ export default function TextForm({ heading = '', mode = 'mode', showAlert = ''})
             textAreaRef.current.select();
             document.execCommand('copy');
             showAlert("Text copied to clipboard", "success")
+            document.getSelection().removeAllRanges();
         }
     };
 
@@ -73,22 +74,22 @@ export default function TextForm({ heading = '', mode = 'mode', showAlert = ''})
                         style={{ backgroundColor: mode === 'light' ? 'white': '#2d2d2d' , resize: 'vertical',color: mode === 'dark' ? 'white': 'black'}}
                     ></textarea>
                 </div>
-                <button className="btn btn-primary mx-2 my-2" onClick={handleUpClick}>
+                <button disabled={text.length===0} className="btn btn-primary mx-2 my-2" onClick={handleUpClick}>
                     Convert to Uppercase
                 </button>
-                <button className="btn btn-primary mx-2 my-2" onClick={handleLowClick}>
+                <button disabled={text.length===0} className="btn btn-primary mx-2 my-2" onClick={handleLowClick}>
                     Convert to Lowercase 
                 </button>
-                <button className="btn btn-primary mx-2 my-2" onClick={handleClearClick}>
+                <button disabled={text.length===0} className="btn btn-primary mx-2 my-2" onClick={handleClearClick}>
                     Clear Text
                 </button>
-                <button className="btn btn-primary mx-2 my-2" onClick={handleCopyClick}>
+                <button disabled={text.length===0} className="btn btn-primary mx-2 my-2" onClick={handleCopyClick}>
                     Copy Text
                 </button>
-                <button className="btn btn-primary mx-2 my-2" onClick={handlePasteClick}>
+                <button disabled={text.length===0} className="btn btn-primary mx-2 my-2" onClick={handlePasteClick}>
                     Paste Text
                 </button>
-                <button className="btn btn-primary mx-2 my-2" onClick={handleExtSpcClick}>
+                <button disabled={text.length===0} className="btn btn-primary mx-2 my-2" onClick={handleExtSpcClick}>
                     Remove Extra Space
                 </button>
             </div>
@@ -98,7 +99,7 @@ export default function TextForm({ heading = '', mode = 'mode', showAlert = ''})
                 <p>{wordCount} words, {charCount} characters</p>
                 <p>{0.008 * wordCount} Minutes read</p>
                 <h2>Preview</h2>
-                <p>{text.length>0?text:"Enter something to preview"}</p>
+                <p>{text.length>0?text:"Nothing to preview"}</p>
             </div>
         </>
     );

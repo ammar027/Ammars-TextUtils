@@ -6,7 +6,7 @@ export default function Alert({ alert = ""}) {
         return lower.charAt(0).toUpperCase() + lower.slice(1);
     }
   return (
-    <div>
+    <div style={{height: '40px'}}>
         
         {alert && 
         <div  className={`alert alert-${alert.type} alert-dismissible fade show fade hide my-1 mx-5`}  role="alert">
