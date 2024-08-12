@@ -1,15 +1,17 @@
 import React, { useState, useRef } from 'react';
 
-export default function TextForm({ heading = '', mode = 'mode' }) {
+export default function TextForm({ heading = '', mode = 'mode', showAlert = ''}) {
     const [text, setText] = useState('');
     const textAreaRef = useRef(null);
 
     const handleUpClick = () => {
         setText(text.toUpperCase());
+        showAlert("Converted to Uppercase", "success")
     };
 
     const handleLowClick = () => {
         setText(text.toLowerCase());
+        showAlert("Converted to Lowercase", "success")
     };
 
     const handleOnChange = (event) => {
@@ -18,13 +20,14 @@ export default function TextForm({ heading = '', mode = 'mode' }) {
 
     const handleClearClick = () => {
         setText('');
+        showAlert("Text cleared", "success")
     };
 
     const handleCopyClick = () => {
         if (textAreaRef.current) {
             textAreaRef.current.select();
             document.execCommand('copy');
-            // alert('Text copied to clipboard!');
+            showAlert("Text copied to clipboard", "success")
         }
     };
 
@@ -32,15 +35,16 @@ export default function TextForm({ heading = '', mode = 'mode' }) {
             try {
                 const clipboardText = await navigator.clipboard.readText();
                 setText(text + clipboardText);
+                showAlert("Text pasted ", "success")
             } catch (err) {
-                console.error('Failed to read clipboard contents: ', err);
-                alert('Failed to paste text. Please allow clipboard permissions.');
+                showAlert("Failed to paste text. Please allow clipboard permissions", "success")
             }
     };
 
     const handleExtSpcClick = () => {
         let newText = text.split(/[ ]+/);
         setText(newText.join(" "))
+        showAlert("Removed Extra Spaces", "success")
     };
 
 
