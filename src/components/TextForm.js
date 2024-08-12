@@ -70,7 +70,7 @@ export default function TextForm({ heading = '', mode = 'mode', showAlert = ''})
                         id="myBox"
                         rows="10"
                         ref={textAreaRef}
-                        style={{ backgroundColor: mode === 'light' ? 'white': 'grey' , resize: 'vertical',color: mode === 'dark' ? 'white': 'black'}}
+                        style={{ backgroundColor: mode === 'light' ? 'white': '#2d2d2d' , resize: 'vertical',color: mode === 'dark' ? 'white': 'black'}}
                     ></textarea>
                 </div>
                 <button className="btn btn-primary mx-2 my-2" onClick={handleUpClick}>

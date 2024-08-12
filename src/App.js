@@ -3,6 +3,13 @@ import './App.css';
 import Navbar from './components/Navbar';
 import TextForm from './components/TextForm';
 import Alert from './components/Alert';
+import About from './components/About';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  // Link,
+} from "react-router-dom";
 
 function App() {
   const [mode, setMode] = useState('light');
@@ -52,11 +59,21 @@ function App() {
 
   return (
     <>
+      <BrowserRouter>
       <Navbar title="TextUtils" mode={mode} theme={theme} setTheme={handleThemeChange} toggleMode={toggleMode} />
       <Alert alert={alert} />
-      <div className="container my-4">
-        <TextForm showAlert={showAlert} heading="Enter the text to convert" mode={mode} />
-      </div>
+
+        <div className="container my-4">
+
+      <Routes>
+        <Route exact path="/" element={<TextForm showAlert={showAlert} heading="Enter the text to convert" mode={mode} />} />
+        <Route exact path="about/"  element={<About mode={mode} theme={theme} />}/>
+      </Routes>
+
+        </div>
+
+      </BrowserRouter>
+
     </>
   );
 }
