@@ -1,30 +1,55 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react';
 
 export default function TextForm({ heading = '' }) {
+    const [text, setText] = useState('');
+    const textAreaRef = useRef(null);
+
     const handleUpClick = () => {
-        let newText = text.toUpperCase();
-        setText(newText);
-    }
+        setText(text.toUpperCase());
+    };
 
     const handleLowClick = () => {
-        let newText = text.toLowerCase();
-        setText(newText);
-    }
+        setText(text.toLowerCase());
+    };
 
     const handleOnChange = (event) => {
         setText(event.target.value);
-    }
+    };
 
-    const handleClrClick = () => {
-        let newText = '';
-        setText(newText);
-    }
+    const handleClearClick = () => {
+        setText('');
+    };
+
+    const handleCopyClick = () => {
+        if (textAreaRef.current) {
+            textAreaRef.current.select();
+            document.execCommand('copy');
+            // alert('Text copied to clipboard!');
+        }
+    };
+
+    const handlePasteClick = async () => {
+            try {
+                const clipboardText = await navigator.clipboard.readText();
+                setText(text + clipboardText);
+            } catch (err) {
+                console.error('Failed to read clipboard contents: ', err);
+                alert('Failed to paste text. Please allow clipboard permissions.');
+            }
+    };
+
+    const handleExtSpcClick = () => {
+        let newText = text.split(/[ ]+/);
+        setText(newText.join(" "))
+    };
+
+
+    
 
     const countCharacters = (str) => {
         return str.split('').filter(char => char !== ' ').length;
     };
 
-    const [text, setText] = useState('');
     const wordCount = text.trim() === '' ? 0 : text.trim().split(/\s+/).length;
     const charCount = countCharacters(text);
 
@@ -39,6 +64,7 @@ export default function TextForm({ heading = '' }) {
                         onChange={handleOnChange}
                         id="myBox"
                         rows="10"
+                        ref={textAreaRef}
                         style={{ resize: 'vertical' }}
                     ></textarea>
                 </div>
@@ -48,8 +74,17 @@ export default function TextForm({ heading = '' }) {
                 <button className="btn btn-primary mx-2 my-2" onClick={handleLowClick}>
                     Convert to Lowercase
                 </button>
-                <button className="btn btn-primary mx-2 my-2" onClick={handleClrClick}>
-                    Clear text
+                <button className="btn btn-primary mx-2 my-2" onClick={handleClearClick}>
+                    Clear Text
+                </button>
+                <button className="btn btn-primary mx-2 my-2" onClick={handleCopyClick}>
+                    Copy Text
+                </button>
+                <button className="btn btn-primary mx-2 my-2" onClick={handlePasteClick}>
+                    Paste Text
+                </button>
+                <button className="btn btn-primary mx-2 my-2" onClick={handleExtSpcClick}>
+                    Remove Extra Space
                 </button>
             </div>
             <div className="container my-4">
