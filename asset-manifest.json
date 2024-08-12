@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/Ammars-TextUtils/static/css/main.84e78452.css",
+    "main.js": "/Ammars-TextUtils/static/js/main.7ef117e4.js",
+    "static/js/453.02b6ed6f.chunk.js": "/Ammars-TextUtils/static/js/453.02b6ed6f.chunk.js",
+    "static/media/fa-solid-900.ttf": "/Ammars-TextUtils/static/media/fa-solid-900.07ed6d5fa32c1d54af0f.ttf",
+    "static/media/fa-brands-400.ttf": "/Ammars-TextUtils/static/media/fa-brands-400.0ff70dcbf135d859ebf3.ttf",
+    "static/media/fa-solid-900.woff2": "/Ammars-TextUtils/static/media/fa-solid-900.93f719f4d62bfa3e748c.woff2",
+    "static/media/fa-brands-400.woff2": "/Ammars-TextUtils/static/media/fa-brands-400.bb8d5a145e22822103fb.woff2",
+    "static/media/fa-regular-400.ttf": "/Ammars-TextUtils/static/media/fa-regular-400.17a6e1aebccdbaa39e78.ttf",
+    "static/media/fa-regular-400.woff2": "/Ammars-TextUtils/static/media/fa-regular-400.bc3722686635b5f86132.woff2",
+    "static/media/fa-v4compatibility.ttf": "/Ammars-TextUtils/static/media/fa-v4compatibility.0f6cb412603527bda691.ttf",
+    "static/media/fa-v4compatibility.woff2": "/Ammars-TextUtils/static/media/fa-v4compatibility.6cfec8414be20e2c3426.woff2",
+    "index.html": "/Ammars-TextUtils/index.html",
+    "main.84e78452.css.map": "/Ammars-TextUtils/static/css/main.84e78452.css.map",
+    "main.7ef117e4.js.map": "/Ammars-TextUtils/static/js/main.7ef117e4.js.map",
+    "453.02b6ed6f.chunk.js.map": "/Ammars-TextUtils/static/js/453.02b6ed6f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.84e78452.css",
+    "static/js/main.7ef117e4.js"
+  ]
+}
