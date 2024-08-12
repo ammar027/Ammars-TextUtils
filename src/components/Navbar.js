@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-export default function Navbar({ title = 'Set title here', aboutText = 'About', mode = 'light', theme = 'light', setTheme, toggleMode }) {
+export default function Navbar({ title = '', aboutText = 'About', mode = 'light', theme = 'light', setTheme, toggleMode }) {
   // Get the text for the dropdown button based on the current theme
   const getDropdownText = () => {
     switch (theme) {

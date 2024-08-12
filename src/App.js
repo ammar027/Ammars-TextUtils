@@ -60,7 +60,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-      <Navbar title="TextUtils" mode={mode} theme={theme} setTheme={handleThemeChange} toggleMode={toggleMode} />
+      <Navbar title="Ammar's TextUtils" mode={mode} theme={theme} setTheme={handleThemeChange} toggleMode={toggleMode} />
       <Alert alert={alert} />
 
         <div className="container my-4">
